@@ -6,4 +6,4 @@ bp = Blueprint('pages', __name__)
 
 @bp.route('/')
 def home():
-    return "<h1>Hello world</h1>"
+    return render_template('pages/home.html')
