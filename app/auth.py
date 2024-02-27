@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import db, ReaderAccounts
+from flask_login import login_user
 
 auth = Blueprint("auth", __name__)
 
@@ -20,7 +21,7 @@ def login_post():
         flash('Invalid credentials.')
         return redirect(url_for('auth.login'))
     
-    
+    login_user(user)
     return redirect(url_for('pages.home'))
 
 # TODO: Do the authentication stuff first then do the database itself.

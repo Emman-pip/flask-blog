@@ -13,7 +13,7 @@ from sqlalchemy import (
 # from app import db
 from sqlalchemy.orm import DeclarativeBase
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_login import UserMixin
 
 class Base(DeclarativeBase):
     pass
@@ -43,8 +43,8 @@ class Articles(db.Model):
     total_views = Column(Integer, default=0)
 
 
-class ReaderAccounts(db.Model):
-    reader_id = Column(Integer, primary_key=True)
+class ReaderAccounts(UserMixin, db.Model):
+    id = Column(Integer, primary_key=True)
     email = Column(String(100), unique=True)
     username = Column(String(150))
     password = Column(String(100))
