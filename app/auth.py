@@ -6,6 +6,7 @@ auth = Blueprint('auth', __name__)
 def login():
     return render_template('auth/login.html')
 
+# TODO: Do the authentication stuff first then do the database itself.
 
 @auth.route('/signup')
 def signup():
