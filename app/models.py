@@ -8,7 +8,7 @@ class Base(DeclarativeBase):
 
 db = SQLAlchemy(model_class=Base)
 
-class Users(db.Model):
+class AuthorAccounts(db.Model):
     account_id = Column(Integer, primary_key=True)
     username = Column(String(100), nullable=False)
     password = Column(String(100), nullable=False)
@@ -25,3 +25,9 @@ class Articles(db.Model):
     article_content = Column(Text, nullable=False)
     author_id = Column(Integer, ForeignKey(Authors.author_id))
     total_views = Column(Integer, default=0)
+
+class ReaderAccounts(db.Model):
+    reader_id = Column(Integer, primary_key=True)
+    email = Column(String(100), unique=True)
+    username = Column(String(150))
+    password  = Column(String(100))
