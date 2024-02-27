@@ -6,5 +6,21 @@
 {% endblock head %}
 
 {% block body %}
-signup HERE
+<main>
+    <div class="form-container container-fluid d-flex justify-content-center align-align-items-center flex-column h-100">
+        <div>
+            {% with message = get_flashed_messages() %}
+            {% if message %}
+                {{ message[0]}}
+            {% endif %}
+            {% endwith %}
+        </div>
+        <form action="/signup" method="POST" class="">
+            <div><label for="email">Email<input type="email" name="email" id="email"></label></div>
+            <div><label for="username">Username<input type="text" name="username" id="username"></label></div>
+            <div><label for="password">Password<input type="password" name="password" id="password"></label></div>
+            <input type="submit" value="Create an account">
+        </form>
+    </div>
+</main>
 {% endblock body %}

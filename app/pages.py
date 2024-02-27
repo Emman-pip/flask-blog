@@ -8,4 +8,4 @@ bp = Blueprint('pages', __name__)
 @bp.route('/')
 def home():
     data = db.session.scalars(select(AuthorAccounts)).all()
-    return render_template('pages/home.html', data=data)
+    return render_template('pages/home.html')

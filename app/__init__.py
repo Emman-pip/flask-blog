@@ -14,6 +14,7 @@ from app import auth
 
 def create_app():    
     app = Flask(__name__)
+    app.config['SECRET_KEY'] = 'Ssecret-key'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost/blog'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
