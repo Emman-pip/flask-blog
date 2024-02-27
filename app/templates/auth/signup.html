@@ -6,8 +6,9 @@
 {% endblock head %}
 
 {% block body %}
-<main>
-    <div class="form-container container-fluid d-flex justify-content-center align-align-items-center flex-column h-100">
+<main id="signup">
+    <h1>Signup :)</h1>
+    <div class="formContainer bg-dark-subtle ">
         <div>
             {% with message = get_flashed_messages() %}
             {% if message %}
@@ -16,10 +17,10 @@
             {% endwith %}
         </div>
         <form action="/signup" method="POST" class="">
-            <div><label for="email">Email<input type="email" name="email" id="email"></label></div>
-            <div><label for="username">Username<input type="text" name="username" id="username"></label></div>
-            <div><label for="password">Password<input type="password" name="password" id="password"></label></div>
-            <input type="submit" value="Create an account">
+            <label for>Email</label><input type="email" name="email" id="email">
+            <label for="username">Username</label><input type="text" name="username" id="username">
+            <label for="password">Password</label><input type="password" name="password" id="password">
+            <input type="submit" class="btn-info " value="Create an account">
         </form>
     </div>
 </main>
