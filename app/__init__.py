@@ -5,6 +5,7 @@ from sqlalchemy import select, Integer, func, Column, Integer, String, ForeignKe
 
 from app import pages
 from app import models
+from app import auth
 
 # class Base(DeclarativeBase):
 #     pass
@@ -15,6 +16,9 @@ def create_app():
     app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost/blog'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    
     app.register_blueprint(pages.bp)
+    app.register_blueprint(auth.auth)
+    
     models.db.init_app(app)
     return app
