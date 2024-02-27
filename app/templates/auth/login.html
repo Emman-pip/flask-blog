@@ -5,5 +5,16 @@
 {% endblock head %}
 
 {% block body %}
-LOGIN HERE
+<main>
+    {% with message = get_flashed_messages() %}
+    {% if message %}
+    {{ message[0] }}
+    {% endif %}
+    {% endwith %}
+    <form action="/login" method="POST">
+        <input type="email" name="email" placeholder="email">
+        <input type="password" name="password" placeholder="password">
+        <input type="submit" value="login">
+    </form>
+</main>
 {% endblock body %}
