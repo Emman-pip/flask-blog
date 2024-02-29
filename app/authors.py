@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template, redirect, url_for, flash
+from flask import Blueprint, request, render_template, redirect, url_for, flash, current_app
 from .models import db, AuthorAccounts, Authors, Articles
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_required, login_user, logout_user, current_user
@@ -14,6 +14,8 @@ def options():
 
 @authors.route("/author-login")
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('authors.yourPosts'))
     return render_template("authors/authorLogin.html")
 
 
@@ -72,3 +74,8 @@ def yourPosts():
     name = current_user.username
     return name
 
+@authors.route('/logout-author')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('authors.login'))
