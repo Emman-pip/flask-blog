@@ -7,7 +7,6 @@ from flask_login import LoginManager
 from app import pages
 from app import models
 from app import auth
-from  .authors import authors
 
 # class Base(DeclarativeBase):
 #     pass
@@ -24,13 +23,6 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
     
-    login_manager_author = LoginManager()
-    login_manager_author.login_view = 'authors.login'
-    login_manager_author.init_app(app)
-
-    @login_manager_author.user_loader
-    def load_user(user_id):
-        return models.AuthorAccounts.query.get(user_id)
     
     @login_manager.user_loader
     def load_user(user_id):
@@ -38,7 +30,6 @@ def create_app():
     
     app.register_blueprint(pages.bp)
     app.register_blueprint(auth.auth)
-    app.register_blueprint(authors)
     
     models.db.init_app(app)
     return app
