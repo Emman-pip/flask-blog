@@ -1,6 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from .models import db, AuthorAccounts, Authors, Articles
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import login_required, login_user, logout_user, current_user
 
 
 authors = Blueprint("authors", __name__)
@@ -14,6 +15,26 @@ def options():
 @authors.route("/author-login")
 def login():
     return render_template("authors/authorLogin.html")
+
+
+@authors.route('/author-login', methods=["POST"])
+def login_post():
+    email = request.form.get("email")
+    password = request.form.get("password")
+
+    author = AuthorAccounts().query.filter_by(email=email).first()
+    
+    if not author:
+        flash('Invalid email')
+        return redirect(url_for('authors.login'))
+    
+    if not check_password_hash(author.password, password):
+        flash('Invalid password')
+        return redirect(url_for('authors.login'))
+
+    
+    login_user(author)
+    return redirect(url_for('authors.yourPosts'))
 
 
 @authors.route("/author-signup")
@@ -44,3 +65,10 @@ def signup_post():
     db.session.commit()
 
     return redirect(url_for("authors.login"))
+
+@authors.route('/your-posts')
+@login_required
+def yourPosts():
+    name = current_user.username
+    return name
+

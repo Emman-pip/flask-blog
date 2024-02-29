@@ -60,3 +60,7 @@
     border-radius: 0.5rem;
 }
 
+.formContainerMain {
+    min-height: 80vh;
+    min-height: 80lvh;
+}

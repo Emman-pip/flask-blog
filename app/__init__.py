@@ -24,6 +24,14 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
     
+    login_manager_author = LoginManager()
+    login_manager_author.login_view = 'authors.login'
+    login_manager_author.init_app(app)
+
+    @login_manager_author.user_loader
+    def load_user(user_id):
+        return models.AuthorAccounts.query.get(user_id)
+    
     @login_manager.user_loader
     def load_user(user_id):
         return models.ReaderAccounts.query.get(user_id)

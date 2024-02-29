@@ -22,16 +22,17 @@ class Base(DeclarativeBase):
 db = SQLAlchemy(model_class=Base)
 
 
-class AuthorAccounts(db.Model):
+class AuthorAccounts(UserMixin, db.Model):
     account_id = Column(Integer, primary_key=True)
     username = Column(String(100), unique=True, nullable=False)
     password = Column(String(100), nullable=False)
     email = Column(String(100), unique=True, nullable=False)
+    def get_id(self):
+        return self.account_id
 
 
 class Authors(db.Model):
     author_id = Column(Integer, primary_key=True)
-    username = Column(String(100), nullable=False)
     description = Column(Text, nullable=False)
     account_id = Column(Integer, ForeignKey(AuthorAccounts.account_id))
 
