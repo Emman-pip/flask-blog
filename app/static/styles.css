@@ -61,3 +61,14 @@
     min-height: 80vh;
     min-height: 80lvh;
 }
+
+#home .article {
+    border: 1px solid gray;
+    border-radius: 0.6rem;
+    padding: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+#home .allPosts {
+    margin-inline: min(5rem, 5vw);
+}

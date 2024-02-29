@@ -8,15 +8,22 @@
 <main id="home">
     <section class="heroPage min-height-100">
         <h1 class="primary-header">We Share.</h1>
+        {% if current_user.is_authenticated %}
         <h3> Welcome {{ name.username }}!</h3>
+        {% endif %}
         
     </section>
     <section class="posts" id="posts">
-        {% if current_user.is_authenticated %}
-        {% endif %}
-        <div class="recentPosts"></div>
-        <div class="popularPosts"></div>
-        <div class="otherNews"></div>
+        <div class="allPosts">
+            <h3>Posts</h3>
+            {% for post in data %}
+                <div class="article">
+                    <div class="title display-6">{{ post.article_title }}</div>
+                    <div class="content" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ post.article_content }}</div>
+                    <div class="author">author: {{ post.username }}</div>
+                </div>
+            {% endfor %}
+        </div>
     </section>
 </main>
 {% endblock body %}
