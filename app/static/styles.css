@@ -39,14 +39,11 @@
 }
 
 #signup form {
-    display: grid;
-    grid-template-columns: auto auto;
+    display: flex;
     gap: 0.5rem;
+    flex-direction: column;
 }
 
-#signup input[type="submit"] {
-    grid-column: span 2;
-}
 
 #login form {
     display: flex;
