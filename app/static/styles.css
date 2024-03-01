@@ -72,3 +72,31 @@
 #home .allPosts {
     margin-inline: min(5rem, 5vw);
 }
+
+
+#articlePage .mainArticle, #articlePage .aboutAuthor {
+    margin-inline: min(3rem, 10vw);
+    margin-block: 2rem;
+}
+
+#articlePage .mainArticle p {
+    padding:1rem;
+}
+
+ #articlePage .mainArticle {
+    padding:0.5rem;
+}
+
+#home .article .title{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+ #articlePage .aboutAuthor {
+    padding: 2rem;
+    border-radius: 0.3rem;
+ }
+
+#articlePage .title {
+    padding:1rem
+} 
