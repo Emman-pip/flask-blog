@@ -16,5 +16,5 @@ def home():
 @bp.route('/article/<article_id>')
 def article(article_id):
     data = Articles.query.filter_by(article_id=article_id).first()
-    authorData = db.session.execute(text(f"SELECT authA.username, auth.description FROM articles INNER JOIN authors as auth ON articles.author_id=auth.author_id INNER JOIN author_accounts as authA ON auth.account_id=authA.account_id WHERE articles.article_id=3;"))
+    authorData = db.session.execute(text(f"SELECT authA.username, auth.description FROM articles INNER JOIN authors as auth ON articles.author_id=auth.author_id INNER JOIN author_accounts as authA ON auth.account_id=authA.account_id WHERE articles.article_id={escape(article_id)};"))
     return render_template('pages/article.html', data=data, author=authorData.fetchone())
