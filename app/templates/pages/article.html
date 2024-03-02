@@ -8,6 +8,9 @@
 <main id="articlePage">
     <div class="mainArticle bg-dark-subtle">
         <h1 class="title">{{ data.article_title }}</h1>
+        <!-- TODO: FIX PATHING HERE. MAYBE CHANGE THE STORAGE TO CLOUD. -->
+        <img src="./../../../../flask-blog-authors/app/{{ data.article_photo }}" alt="icon" class="img-fluid">
+        
         <p>{{ data.article_content }}</p>
         <div class="nav">
             <a href="{{ url_for('pages.home') }}#posts" class="btn btn-info">Back</a>

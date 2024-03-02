@@ -12,7 +12,7 @@ def home():
     data = db.session.execute(text("SELECT a.article_id, a.article_title, a.article_content, acc.username FROM articles AS a INNER JOIN authors ON authors.author_id=a.author_id INNER JOIN author_accounts AS acc ON acc.account_id=authors.account_id;"))
     return render_template('pages/home.html', name=current_user, data=data)
 
-
+# TODO: Add views and limits to queries, options to load more kasi what if super dami ng blog posts?
 @bp.route('/article/<article_id>')
 def article(article_id):
     data = Articles.query.filter_by(article_id=article_id).first()
